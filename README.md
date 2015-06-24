@@ -1,3 +1,5 @@
+//Orginality: http://code.tutsplus.com/courses/object-oriented-javascript
+
 //define our namespace
  myJsLib
 
