@@ -1,6 +1,10 @@
 //use Immediately-Invoked Function Expression (IIFE)
 var myJsLib = (function (myJsLib) {
 
+    var createTabs = function (tabs) {
+
+    };
+    
     myJsLib.createTabStrip = function (elementId) {
         var elm = document.getElementById(elementId);
         //if element dosnt exist create it
@@ -10,9 +14,7 @@ var myJsLib = (function (myJsLib) {
         }
 
         var tabs = elm.querySelectorAll(".tab");
-        var createTabs = function (tabs) {
 
-        };
 
         return {
             tabs: createTabs(tabs)
