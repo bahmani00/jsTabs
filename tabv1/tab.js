@@ -30,6 +30,7 @@ var myJsLib = (function (myJsLib) {
 
             var tab = {
                 el: el,
+                parent: null,
                 pageView: createPageView(pageViewElements[index]),
 
                 disable: function () {
@@ -56,7 +57,14 @@ var myJsLib = (function (myJsLib) {
                 isActive: function () {
                     return this.el.classList.contains("active");
                 },
+                onclick: function () {
+                    this.parent.deactivateAll();
+                    this.activate();
+                }
+            };
 
+            tab.el.onclick = function () {
+                tab.onclick.call(tab);
             };
 
             tabs.push(tab);
@@ -79,15 +87,21 @@ var myJsLib = (function (myJsLib) {
         var tabs = createTabs(tabElements, pageViewElements);
 
 
-        return {
+        var tabStrip = {
             tabs: tabs,
-            pageViews: tabs.pageViews,
+            //pageViews: tabs.pageViews,
             deactivateAll: function () {
                 this.tabs.forEach(function (element, index, array) {
                     element.deactivate();
                 });
             }
         };
+
+        tabStrip.tabs.forEach(function (element, index, array) {
+            element.parent = tabStrip;
+        });
+
+        return tabStrip;
 
     }
 
