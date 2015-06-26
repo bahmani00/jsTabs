@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="tab.v1.js"></script>
+    <link href="tab.css" rel="stylesheet">
+</head>
+<body>
+    <div id="divTabstrip1" class="tabstrip">
+        <div class="tab">General</div>
+        <div class="tab">Details</div>
+        <div class="tab">Security</div>
+
+        <div style="clear:both"></div>
+
+        <div class="pageView">this is all about General</div>
+        <div class="pageView">this is all about Details</div>
+        <div class="pageView">this is all about Security</div>
+
+    </div>
+
+    <script>
+        var tabStrip = myJsLib.createTabStrip("divTabstrip1");
+        tabStrip.deactivateAll();
+        tabStrip.tabs[0].activate();
+
+
+    </script>
+</body>
+</html>
