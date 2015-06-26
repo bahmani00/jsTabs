@@ -5,7 +5,21 @@ var myJsLib = (function (myJsLib) {
 
         return {
             el: pageViewElement,
-
+            isDisabled: function () {
+                return this.el.classList.contains("disabled");
+            },
+            activate: function () {
+                if (!this.isDisabled()) {
+                    this.el.classList.add("active");
+                    this.el.classList.remove("hide");
+                }
+            },
+            deactivate: function () {
+                if (!this.isDisabled()) {
+                    this.el.classList.remove("active");
+                    this.el.classList.add("hide");
+                }
+            },
         };
     };
 
@@ -30,11 +44,13 @@ var myJsLib = (function (myJsLib) {
                 activate: function () {
                     if (!this.isDisabled()) {
                         this.el.classList.add("active");
+                        this.pageView.activate();
                     }
                 },
                 deactivate: function () {
                     if (!this.isDisabled()) {
                         this.el.classList.remove("active");
+                        this.pageView.deactivate();
                     }
                 },
                 isActive: function () {
@@ -58,14 +74,19 @@ var myJsLib = (function (myJsLib) {
         }
 
         var tabElements = elm.querySelectorAll(".tab");
-        var pageViewElements = elm.querySelectorAll(".pageview");
+        var pageViewElements = elm.querySelectorAll(".pageView");
 
         var tabs = createTabs(tabElements, pageViewElements);
 
 
         return {
             tabs: tabs,
-            pageViews: tabs.pageViews
+            pageViews: tabs.pageViews,
+            deactivateAll: function () {
+                this.tabs.forEach(function (element, index, array) {
+                    element.deactivate();
+                });
+            }
         };
 
     }
