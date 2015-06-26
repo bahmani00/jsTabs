@@ -57,14 +57,11 @@ var myJsLib = (function (myJsLib) {
                 isActive: function () {
                     return this.el.classList.contains("active");
                 },
-                onclick: function () {
-                    this.parent.deactivateAll();
-                    this.activate();
-                }
             };
 
             tab.el.onclick = function () {
-                tab.onclick.call(tab);
+                tab.parent.deactivateAll();
+                tab.activate();
             };
 
             tabs.push(tab);
